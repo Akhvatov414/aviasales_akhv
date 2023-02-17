@@ -1,0 +1,22 @@
+body {
+    background-color: #E5E5E5;
+}
+
+.wrapper {
+    display: flex;
+    width: 774px;
+    margin: 0 auto; 
+    gap: 20px;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

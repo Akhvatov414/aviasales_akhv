@@ -1,0 +1,45 @@
+$nonActive: #ffffff;
+$active: #2196f3;
+$activeText: #ffffff;
+$borderColor: #dfe5ec;
+$text: #4a4a4a;
+
+.listEl {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    @media (max-width: 767px) {
+        flex-direction: column;
+    }
+
+    &__el {
+        white-space: nowrap;
+        padding: 15px 30px;
+        font-family: Open Sans, serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: $text;
+        background-color: $nonActive;
+
+        &:first-child{
+            border-right: 1px solid $borderColor;
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+
+        :last-child{
+            border-left: 1px solid $borderColor;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        &.active {
+            transition: 0.4s;
+            color: $activeText;
+            background-color: $active;
+        }
+    }
+}

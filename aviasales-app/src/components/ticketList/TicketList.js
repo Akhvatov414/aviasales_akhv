@@ -1,6 +1,7 @@
 import React from 'react';
 import SortList from '../sortList/SortList';
 import TicketCard from '../ticketCard/TicketCard';
+import style from './index.module.scss'; 
 
 const tickets = [
     {
@@ -82,9 +83,11 @@ const TicketList = () => {
         )
     })
     return (
-        <div>
-        <SortList />
-        {renderTickets}
+        <div className={style.list}>
+            <SortList />
+            <ul>
+                {renderTickets}
+            </ul>
         </div>
     );
 };
