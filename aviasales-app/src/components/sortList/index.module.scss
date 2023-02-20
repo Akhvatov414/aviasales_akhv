@@ -24,6 +24,7 @@ $text: #4a4a4a;
         text-align: center;
         color: $text;
         background-color: $nonActive;
+        cursor: pointer;
 
         &:first-child{
             border-right: 1px solid $borderColor;
@@ -31,7 +32,7 @@ $text: #4a4a4a;
             border-top-left-radius: 5px;
         }
 
-        :last-child{
+        &:last-child{
             border-left: 1px solid $borderColor;
             border-bottom-right-radius: 5px;
             border-top-right-radius: 5px;

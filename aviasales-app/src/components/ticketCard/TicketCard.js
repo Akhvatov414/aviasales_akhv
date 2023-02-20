@@ -2,7 +2,6 @@ import React from 'react';
 import style from './index.module.scss'; 
 
 const TicketCard = ({ data }) => {
-    console.log(data);
     const {
         price,
         from,
