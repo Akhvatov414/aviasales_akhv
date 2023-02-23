@@ -2,8 +2,14 @@ import StopFilter from '../stopFilter/StopFilter';
 import TicketList from "../ticketList/TicketList";
 import LogoIcon from "../assets/images/Logo.png";
 import style from './index.module.scss';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../store/actions';
 
-function App() {
+function App({ getTickets }) {
+  useEffect(() => {
+    getTickets();
+  }, [getTickets])
   return (
     <div className="app">
       <main className={style.wrapper}>
@@ -19,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, actions)(App);

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const URL = 'https://aviasales-test-api.kata.academy/tickets?searchId=';
 
 const setLoadingStatus = (status) => ({
@@ -13,10 +15,38 @@ export const setFilter = (filter) => ({
     type: 'setFilter', filter,
 });
 
-export const getTickets = () => async (dispatch) => {
-    const isLoading = true;
-    const res = await fetch('https://aviasales-test-api.kata.academy/search');
-    const { searchId } =  await res.json();
-}
+const getTicketList = async (searchUrl, dispatch, hopes) => {
+    try{
+        const req = await fetch(`${searchUrl}`);
+        const  res = await req.json();
+        return res;
+    } catch(e) {
+        if (hopes === 0){
+            dispatch(setLoadingStatus('Error'));
+            console.log('error');
+            return false;
+        }
 
-getTickets();
+        const reconnect = await getTicketList(searchUrl, dispatch, hopes - 1);
+        return reconnect;
+    }
+
+};
+
+export const getTickets = () => async (dispatch) => {
+    let isLoading = true;
+    const getID = await fetch('https://aviasales-test-api.kata.academy/search');
+    const { searchId } =  await getID.json();
+    const searchURL = `${URL}${searchId}`;
+    while (isLoading) {
+        const { tickets: ticketList, stop } = await getTicketList(searchURL, dispatch, 10)
+        isLoading = !stop;
+        if(isLoading) {
+            const tickets = ticketList.map((item) => ({ ...item, id: uuidv4()}));
+            dispatch({ type: 'setTickets', tickets })
+        }
+        if(!isLoading) {
+            dispatch(setLoadingStatus('finished'));
+        }
+    }  
+};
