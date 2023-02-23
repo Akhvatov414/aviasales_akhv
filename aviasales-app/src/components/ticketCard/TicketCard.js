@@ -1,13 +1,30 @@
 import React from 'react';
-import style from './index.module.scss'; 
+import style from './index.module.scss';
+import { format } from 'date-fns'; 
 
 const TicketCard = ({ data }) => {
     const {
         carrier,
         price,
         segments,
-     } = data;
-     console.log(data);
+    } = data;
+    
+    const getDepTime = (time) => {
+        return format(new Date(`${time}`), 'hh:mm');
+    };
+
+    const getArrTime = (time, duration) => {
+        let depTime = new Date(time).getMinutes();
+        let arrTime = depTime + duration;
+        return format(new Date(`${arrTime}`), 'hh:mm');
+    };
+
+    const getDurationTime = (time) => {
+        let hours = Math.floor(time / 60);
+        let minutes = time % 60 < 10 ? `0${time % 60}` : `${time % 60}`
+        return `${hours}ч ${minutes}м`;
+    }
+
     return (
         <li>
             <div className={style.ticket}>
@@ -15,7 +32,8 @@ const TicketCard = ({ data }) => {
                     <span className={style.ticket__price}>{price} Р</span>
                     <img 
                       className={style.ticket__logo}
-                      src={`https://pics.avs.io/99/36/${carrier}.png`}                    
+                      src={`https://pics.avs.io/99/36/${carrier}.png`}
+                      alt={`Logo ${carrier}`}                    
                     />
                 </div>
                 <div className={style.ticket__description}>
@@ -24,7 +42,7 @@ const TicketCard = ({ data }) => {
                             {segments[0].origin} - {segments[0].destination}
                         </span>
                         <span className={style.ticket__data}>
-                            {segments[0].date} - {segments[0].date}
+                            {getDepTime(segments[0].date)} - {getArrTime(segments[0].date, segments[0].duration)}
                         </span>
                     </div>
                     <div className={style.ticket__column}>
@@ -32,7 +50,7 @@ const TicketCard = ({ data }) => {
                             В пути
                         </span>
                         <span className={style.ticket__data}>
-                            {segments[0].duration}
+                            {getDurationTime(segments[0].duration)}
                         </span>
                     </div>  
                     <div className={style.ticket__column}>
@@ -50,7 +68,7 @@ const TicketCard = ({ data }) => {
                             {segments[1].origin} - {segments[1].destination}
                         </span>
                         <span className={style.ticket__data}>
-                            {segments[1].date} - {segments[1].date}
+                        {getDepTime(segments[1].date)} - {getArrTime(segments[1].date, segments[1].duration)}
                         </span>
                     </div>
                     <div className={style.ticket__column}>
@@ -58,7 +76,7 @@ const TicketCard = ({ data }) => {
                             В пути
                         </span>
                         <span className={style.ticket__data}>
-                            {segments[1].duration}
+                            {getDurationTime(segments[1].duration)}
                         </span>
                     </div>  
                     <div className={style.ticket__column}>

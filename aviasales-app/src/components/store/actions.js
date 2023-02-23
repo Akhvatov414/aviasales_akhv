@@ -19,11 +19,11 @@ const getTicketList = async (searchUrl, dispatch, hopes) => {
     try{
         const req = await fetch(`${searchUrl}`);
         const  res = await req.json();
+        dispatch(setLoadingStatus('loading'))
         return res;
     } catch(e) {
         if (hopes === 0){
             dispatch(setLoadingStatus('Error'));
-            console.log('error');
             return false;
         }
 
@@ -39,7 +39,7 @@ export const getTickets = () => async (dispatch) => {
     const { searchId } =  await getID.json();
     const searchURL = `${URL}${searchId}`;
     while (isLoading) {
-        const { tickets: ticketList, stop } = await getTicketList(searchURL, dispatch, 10)
+        const { tickets: ticketList, stop } = await getTicketList(searchURL, dispatch, 5)
         isLoading = !stop;
         if(isLoading) {
             const tickets = ticketList.map((item) => ({ ...item, id: uuidv4()}));

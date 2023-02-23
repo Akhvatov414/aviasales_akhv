@@ -1,5 +1,5 @@
 const initialState = {
-    filter: 'cheapest',
+    filter: 'fastest',
 };
 
 const filterReducer = (state = initialState, action) => {
