@@ -1,5 +1,6 @@
 import React from 'react';
-import style from './index.module.scss'; 
+import style from './index.module.scss';
+import { format } from 'date-fns'; 
 
 const TicketCard = ({ data }) => {
     const {
