@@ -9,7 +9,7 @@ $text: #4a4a4a;
     flex-wrap: nowrap;
     border: 1px solid $borderColor;
     border-radius: 5px;
-    @media (max-width: 767px) {
+    @media (max-width: 787px) {
         flex-direction: column;
     }
 

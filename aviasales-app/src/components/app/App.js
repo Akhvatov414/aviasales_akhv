@@ -1,20 +1,22 @@
-import StopFilter from '../stopFilter/StopFilter';
-import TicketList from "../ticketList/TicketList";
-import LogoIcon from "../assets/images/Logo.png";
-import style from './index.module.scss';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+
+import StopFilter from '../stopFilter/StopFilter';
+import TicketList from '../ticketList/TicketList';
+import LogoIcon from '../assets/images/Logo.png';
 import * as actions from '../store/actions';
+
+import style from './index.module.scss';
 
 function App({ getTickets }) {
   useEffect(() => {
     getTickets();
-  }, [getTickets])
+  }, [getTickets]);
   return (
-    <div className="app">
+    <div className={style.app}>
       <main className={style.wrapper}>
         <div className={style.header}>
-          <img src={LogoIcon} alt="logo" className="logo"/>
+          <img src={LogoIcon} alt="logo" className="logo" />
         </div>
         <div className={style.content}>
           <StopFilter />

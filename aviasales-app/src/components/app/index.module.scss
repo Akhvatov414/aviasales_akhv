@@ -1,13 +1,31 @@
 body {
     background-color: #E5E5E5;
+    font-family: 'Open Sans';
+    font-style: normal;
+}
+
+.app {
+    align-items: center;
+    background-color: #f3f7fa;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 960px;
+    width: 100%;
+    height: 100%;
 }
 
 .wrapper {
     display: flex;
     width: 774px;
-    margin: 0 auto; 
+    margin: 0 auto;
+    background-color: #F3F7FA;
     gap: 20px;
     flex-direction: column;
+    height: 100%;
+    @media (max-width: 787px) {
+        width: 100%;
+    }
 }
 
 .header {
@@ -19,4 +37,10 @@ body {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    @media (max-width: 787px){
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+    }
 }
+
