@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import { addMinutes, format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import style from './index.module.scss';
@@ -12,9 +12,7 @@ const TicketCard = ({ data }) => {
   };
 
   const getArrTime = (time, duration) => {
-    let depTime = new Date(time).getMinutes();
-    let arrTime = depTime + duration;
-    return format(new Date(`${arrTime}`), 'hh:mm');
+    return format(addMinutes(new Date(`${time}`), duration), 'hh:mm');
   };
 
   const getDurationTime = (time) => {
