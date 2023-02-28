@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Alerts from '../alerts/Alerts';
 import Loader from '../loader/Loader';
@@ -111,5 +112,12 @@ const mapStateToProps = (state) => ({
   filter: state.filter.filter,
   loadingStatus: state.loadingStatus.loadingStatus,
 });
+
+TicketList.propTypes = {
+  tickets: PropTypes.array.isRequired,
+  stop: PropTypes.object.isRequired,
+  filter: PropTypes.string.isRequired,
+  loadingStatus: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(TicketList);

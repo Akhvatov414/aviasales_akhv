@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actions from '../store/actions';
 
@@ -74,5 +75,10 @@ function StopFilter({ stops, setStop }) {
 const mapStateToProps = (state) => ({
   stops: state.stop.stops,
 });
+
+StopFilter.propTypes = {
+  stops: PropTypes.object.isRequired,
+  setStop: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, actions)(StopFilter);

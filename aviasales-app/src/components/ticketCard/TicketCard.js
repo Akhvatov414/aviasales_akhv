@@ -1,5 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 
 import style from './index.module.scss';
 
@@ -76,6 +77,10 @@ const TicketCard = ({ data }) => {
       </div>
     </li>
   );
+};
+
+TicketCard.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default TicketCard;

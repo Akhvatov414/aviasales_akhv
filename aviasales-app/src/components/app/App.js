@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import StopFilter from '../stopFilter/StopFilter';
 import TicketList from '../ticketList/TicketList';
@@ -26,5 +27,9 @@ function App({ getTickets }) {
     </div>
   );
 }
+
+App.propTypes = {
+  getTickets: PropTypes.func,
+};
 
 export default connect(null, actions)(App);

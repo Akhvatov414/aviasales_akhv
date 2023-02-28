@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LoaderGif from '../assets/images/loader.gif';
 
@@ -13,6 +14,10 @@ const Loader = ({ isLoading }) => {
     ) : null;
 
   return <>{loader}</>;
+};
+
+Loader.proptypes = {
+  isLoading: PropTypes.bool,
 };
 
 export default Loader;
