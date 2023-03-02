@@ -1,2 +1,1 @@
-# aviasales_akhv
-aviasales_akhv
+https://aviasales-app-kappa.vercel.app/
