@@ -75,16 +75,6 @@ function TicketCard({ data }) {
 TicketCard.propTypes = {
   data: PropTypes.shape({
     price: PropTypes.number.isRequired,
-    segments: PropTypes.shape({
-      origin: PropTypes.string.isRequired,
-      destination: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      duration: PropTypes.number.isRequired,
-      stops: PropTypes.shape({
-        0: PropTypes.string.isRequired,
-        1: PropTypes.string.isRequired,
-      }),
-    }).isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired,
 };
