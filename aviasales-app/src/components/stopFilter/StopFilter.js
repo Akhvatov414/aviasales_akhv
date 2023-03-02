@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -77,7 +76,13 @@ const mapStateToProps = (state) => ({
 });
 
 StopFilter.propTypes = {
-  stops: PropTypes.object.isRequired,
+  stops: PropTypes.shape({
+    all: PropTypes.bool.isRequired,
+    withoutStops: PropTypes.bool.isRequired,
+    oneStop: PropTypes.bool.isRequired,
+    twoStops: PropTypes.bool.isRequired,
+    threeStops: PropTypes.bool.isRequired,
+  }).isRequired,
   setStop: PropTypes.func.isRequired,
 };
 

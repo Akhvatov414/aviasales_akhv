@@ -41,6 +41,7 @@ export const getTickets = () => async (dispatch) => {
   const { searchId } = await getID.json();
   const searchURL = `${URL}${searchId}`;
   while (isLoading) {
+    // eslint-disable-next-line no-await-in-loop
     const { tickets: ticketList, stop } = await getTicketList(searchURL, dispatch, 5);
     isLoading = !stop;
     if (isLoading) {

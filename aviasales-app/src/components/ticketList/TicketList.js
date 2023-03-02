@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import TicketCard from '../ticketCard/TicketCard';
 
 import style from './index.module.scss';
 
-const TicketList = ({ tickets, stop, filter, loadingStatus }) => {
+function TicketList({ tickets, stop, filter, loadingStatus }) {
   const [showTicketCounter, setShowTicketCounter] = useState(5);
 
   useEffect(() => {
@@ -17,8 +17,8 @@ const TicketList = ({ tickets, stop, filter, loadingStatus }) => {
   }, [stop, filter]);
 
   const getAvg = (num) => {
-    const sum = num.reduce((acc, num) => acc + num, 0);
-    const length = num.length;
+    const sum = num.reduce((acc, number) => acc + number, 0);
+    const { length } = num;
     return sum / length;
   };
 
@@ -64,29 +64,27 @@ const TicketList = ({ tickets, stop, filter, loadingStatus }) => {
     if (filter === 'cheapest') renderTickets.sort((a, b) => a.price - b.price);
     if (filter === 'fastest')
       renderTickets.sort((a, b) => {
-        let aDuration = a.segments[0].duration + a.segments[1].duration;
-        let bDuration = b.segments[0].duration + b.segments[1].duration;
+        const aDuration = a.segments[0].duration + a.segments[1].duration;
+        const bDuration = b.segments[0].duration + b.segments[1].duration;
 
         return aDuration - bDuration;
       });
 
     prices = renderTickets.map((item) => item.price);
-    let avgPrice = getAvg(prices);
+    const avgPrice = getAvg(prices);
     if (filter === 'optimal')
       renderTickets.sort((a, b) => {
-        let aDuration = a.segments[0].duration + a.segments[1].duration;
-        let bDuration = b.segments[0].duration + b.segments[1].duration;
+        const aDuration = a.segments[0].duration + a.segments[1].duration;
+        const bDuration = b.segments[0].duration + b.segments[1].duration;
 
         return aDuration - bDuration && a.price - b.price < avgPrice;
       });
 
-    return renderTickets.slice(0, showTicketCounter).map((ticket) => {
-      return <TicketCard key={ticket.id} data={ticket} />;
-    });
+    return renderTickets.slice(0, showTicketCounter).map((ticket) => <TicketCard key={ticket.id} data={ticket} />);
   };
 
   const btn = (
-    <button className={style.button} onClick={() => setShowTicketCounter((prev) => prev + 5)}>
+    <button type="button" className={style.button} onClick={() => setShowTicketCounter((prev) => prev + 5)}>
       Показать еще 5 билетов!
     </button>
   );
@@ -100,11 +98,11 @@ const TicketList = ({ tickets, stop, filter, loadingStatus }) => {
       <SortList />
       <Loader isLoading={loadingStatus} />
       <Alerts errorLoading={loadingStatus} ticketList={setList.length} />
-      {<ul>{setList}</ul>}
+      <ul>{setList}</ul>
       {getMoreTicketsBtn}
     </div>
   );
-};
+}
 
 const mapStateToProps = (state) => ({
   tickets: state.tickets.tickets,
@@ -114,8 +112,6 @@ const mapStateToProps = (state) => ({
 });
 
 TicketList.propTypes = {
-  tickets: PropTypes.array.isRequired,
-  stop: PropTypes.object.isRequired,
   filter: PropTypes.string.isRequired,
   loadingStatus: PropTypes.string.isRequired,
 };

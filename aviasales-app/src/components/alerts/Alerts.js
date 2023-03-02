@@ -1,10 +1,9 @@
-import React from 'react';
 import { Alert } from 'antd';
 import PropTypes from 'prop-types';
 
 import style from './index.module.scss';
 
-const Alerts = ({ errorLoading, ticketList }) => {
+function Alerts({ errorLoading, ticketList }) {
   const errorMessage =
     errorLoading === 'error' ? (
       <Alert
@@ -39,11 +38,11 @@ const Alerts = ({ errorLoading, ticketList }) => {
       {noData}
     </div>
   );
-};
+}
 
 Alerts.propTypes = {
-  errorLoading: PropTypes.string,
-  ticketList: PropTypes.number,
+  errorLoading: PropTypes.string.isRequired,
+  ticketList: PropTypes.number.isRequired,
 };
 
 export default Alerts;

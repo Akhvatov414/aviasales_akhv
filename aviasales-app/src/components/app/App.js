@@ -29,7 +29,7 @@ function App({ getTickets }) {
 }
 
 App.propTypes = {
-  getTickets: PropTypes.func,
+  getTickets: PropTypes.func.isRequired,
 };
 
 export default connect(null, actions)(App);

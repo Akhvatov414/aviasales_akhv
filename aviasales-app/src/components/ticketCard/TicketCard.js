@@ -1,23 +1,18 @@
-import React from 'react';
 import { addMinutes, format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import style from './index.module.scss';
 
-const TicketCard = ({ data }) => {
+function TicketCard({ data }) {
   const { carrier, price, segments } = data;
 
-  const getDepTime = (time) => {
-    return format(new Date(`${time}`), 'hh:mm');
-  };
+  const getDepTime = (time) => format(new Date(`${time}`), 'hh:mm');
 
-  const getArrTime = (time, duration) => {
-    return format(addMinutes(new Date(`${time}`), duration), 'hh:mm');
-  };
+  const getArrTime = (time, duration) => format(addMinutes(new Date(`${time}`), duration), 'hh:mm');
 
   const getDurationTime = (time) => {
-    let hours = Math.floor(time / 60);
-    let minutes = time % 60 < 10 ? `0${time % 60}` : `${time % 60}`;
+    const hours = Math.floor(time / 60);
+    const minutes = time % 60 < 10 ? `0${time % 60}` : `${time % 60}`;
     return `${hours}ч ${minutes}м`;
   };
 
@@ -75,10 +70,23 @@ const TicketCard = ({ data }) => {
       </div>
     </li>
   );
-};
+}
 
 TicketCard.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    segments: PropTypes.shape({
+      origin: PropTypes.string.isRequired,
+      destination: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      duration: PropTypes.number.isRequired,
+      stops: PropTypes.shape({
+        0: PropTypes.string.isRequired,
+        1: PropTypes.string.isRequired,
+      }),
+    }).isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default TicketCard;

@@ -2,7 +2,7 @@ const initialState = {
   loadingStatus: 'finished',
 };
 
-const loadingStatusReducer = (state = initialState, action) => {
+const loadingStatusReducer = (state = initialState, action = {}) => {
   const SET_LOADING_STATUS = 'setLoadingStatus';
   switch (action.type) {
     case SET_LOADING_STATUS:

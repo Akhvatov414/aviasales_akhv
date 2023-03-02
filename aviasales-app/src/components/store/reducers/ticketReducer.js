@@ -2,7 +2,7 @@ const initialState = {
   tickets: [],
 };
 
-const ticketsReducer = (state = initialState, action) => {
+const ticketsReducer = (state = initialState, action = {}) => {
   const SET_TICKETS = 'setTickets';
   switch (action.type) {
     case SET_TICKETS:

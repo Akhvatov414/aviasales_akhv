@@ -1,23 +1,22 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import LoaderGif from '../assets/images/loader.gif';
 
 import style from './index.module.scss';
 
-const Loader = ({ isLoading }) => {
+function Loader({ isLoading }) {
   const loader =
     isLoading === 'loading' ? (
       <div className={style.loader}>
-        <img src={LoaderGif} />
+        <img src={LoaderGif} alt="Loader" />
       </div>
     ) : null;
 
-  return <>{loader}</>;
-};
+  return <div>{loader}</div>;
+}
 
-Loader.proptypes = {
-  isLoading: PropTypes.bool,
+Loader.propTypes = {
+  isLoading: PropTypes.string.isRequired,
 };
 
 export default Loader;

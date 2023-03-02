@@ -8,14 +8,16 @@ const initialState = {
   },
 };
 
-const stopReducer = (state = initialState, action) => {
+const stopReducer = (state = initialState, action = {}) => {
   const SET_STOP = 'setStop';
   const newValue = { ...state.stops };
   switch (action.type) {
     case SET_STOP:
       if (action.option === 'all') {
+        // eslint-disable-next-line no-return-assign
         Object.keys(newValue).forEach((i) => (newValue[i] = action.checked));
       } else {
+        // eslint-disable-next-line no-return-assign
         Object.keys(newValue).map((i) => (i === action.option ? (newValue[i] = action.checked) : i));
         newValue.all = Object.keys(newValue)
           .slice(1)
